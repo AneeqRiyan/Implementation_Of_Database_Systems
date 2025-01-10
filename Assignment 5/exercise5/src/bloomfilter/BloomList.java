@@ -19,40 +19,53 @@ public class BloomList<E> extends LinkedList<E> {
      * Can be called after (many) deletions to reduce the number of false positives.
      */
     public void resetBloomFilter() {
-        // TODO
+        bf.reset();
+        for (E element : this) {
+            bf.add(element);
+        }
     }
 
     @Override
     public boolean add(E e) {
-        // TODO
-        return true;
+        bf.add(e);
+        return super.add(e);
     }
 
     @Override
     public void add(int index, E element) {
-        // TODO
+        bf.add(element);
+        super.add(index, element);
     }
 
     @Override
-    public E set(int i, E e) {
-        // TODO
-        return null;
+    public E set(int index, E element) {
+        E oldElement = super.set(index, element);
+        resetBloomFilter();
+        return oldElement;
     }
 
     @Override
     public boolean addAll(int index, Collection<? extends E> c) {
-        // TODO
-        return true;
+        boolean added = super.addAll(index, c);
+        if (added) {
+            for (E element : c) {
+                bf.add(element);
+            }
+        }
+        return added;
     }
 
     @Override
     public boolean contains(Object e) {
-        // TODO
-        return false;
+        if (!bf.containsMaybe((E) e)) {
+            return false;
+        }
+        return super.contains(e);
     }
 
     @Override
     public void clear() {
-        // TODO
+        super.clear();
+        bf.reset();
     }
 }
