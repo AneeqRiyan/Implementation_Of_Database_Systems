@@ -47,5 +47,27 @@ public class Main {
                 throw new RuntimeException("Element not found: " + i);
             }
         }
+        System.out.println("All keys successfully inserted and validated.");
+        System.out.println("Final size of hash map: " + map.getSize());
+        System.out.println("Load factor: " + map.getLoadFactor());
+
+        long start = System.currentTimeMillis();
+        for (long i = 0; i < numInserts; i++) {
+            map.insert(i, i);
+        }
+        long end = System.currentTimeMillis();
+        System.out.println("Insertion time: " + (end - start) + " ms");
     }
+
+//    for 1000 records insertion
+//    All keys successfully inserted and validated.
+//    Final size of hash map: 1000
+//    Load factor: 0.7993605115907274
+//    Insertion time: 0 ms
+
+
+//    All keys successfully inserted and validated.
+//    Final size of hash map: 10000
+//    Load factor: 0.7999360051195904
+//    Insertion time: 120 ms
 }

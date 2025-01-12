@@ -60,6 +60,6 @@ public class Main {
 
     // list of 16-100 there was no difference of time
     // increasing the size to 100000 Bloom list performed better.
-//    list: 103423 ms
-//    bloom list: 101887 ms
+    //list: 103423 ms
+    //bloom list: 101887 ms
 }
